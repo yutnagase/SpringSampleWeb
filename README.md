@@ -9,5 +9,6 @@ You can start it by following the steps below.
 ## URLs
 Inquiry form
 http://localhost:8080/inquiry/form
+
 survey form
 http://localhost:8080/survey/form
