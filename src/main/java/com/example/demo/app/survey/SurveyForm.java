@@ -14,9 +14,9 @@ public class SurveyForm {
 	@Min(0)
 	@Max(150)
 	private int age;
-	@NotNull
-	@Pattern(regexp = "[1-5]", message = "1, 2, 3, 4, 5の中から選択してください")
-	private String satisfaction;
+    @Min(1)
+    @Max(5)
+	private int satisfaction;
 	@NotNull
 	@Size(min = 1, max = 200, message = "Please input 200characters or less")
 	private String comment;
@@ -30,10 +30,10 @@ public class SurveyForm {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getSatisfaction() {
+	public int getSatisfaction() {
 		return satisfaction;
 	}
-	public void setSatisfaction(String satisfaction) {
+	public void setSatisfaction(int satisfaction) {
 		this.satisfaction = satisfaction;
 	}
 	public String getComment() {
