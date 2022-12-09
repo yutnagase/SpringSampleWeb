@@ -23,10 +23,20 @@ public class InquiryServiceImpl implements InquiryService {
 		dao.insertInquiry(inquiry);
 	}
 
+
+	@Override
+	public void update(Inquiry inquiry) {
+		if (dao.updateInquiry(inquiry) == 0) {
+			throw new InquiryNotFoundException("can't fine the same ID");
+		}
+		
+	}
+	
 	@Override
 	public List<Inquiry> getAll() {
 
 		return dao.getAll();
 	}
+
 
 }

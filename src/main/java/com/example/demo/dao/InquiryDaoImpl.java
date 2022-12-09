@@ -25,10 +25,15 @@ public class InquiryDaoImpl implements InquiryDao {
 	public void insertInquiry(Inquiry inquiry) {
 		jdbcTemplate.update("INSERT INTO inquiry(name, email, contents, created) VALUES (?, ?, ?, ?)",
 				inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getCreated());
-
-		
 	}
 
+
+	@Override
+	public int updateInquiry(Inquiry inquiry) {
+		return jdbcTemplate.update("UPDATE inquiry SET name = ?, email = ?, contents = ? WHERE id = ?", 
+				inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getId());
+	}	
+	
 	@Override
 	public List<Inquiry> getAll() {
 		String sql = "SELECT id, name, email, contents, created FROM inquiry";
@@ -47,5 +52,6 @@ public class InquiryDaoImpl implements InquiryDao {
 		
 		return list;
 	}
+
 
 }
