@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import java.sql.Timestamp;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class InquiryDaoImpl implements InquiryDao {
 			inquiry.setName((String)result.get("name"));
 			inquiry.setEmail((String)result.get("email"));
 			inquiry.setContents((String)result.get("contents"));
-			inquiry.setCreated(((Timestamp)result.get("created")).toLocalDateTime());
+			inquiry.setCreated(((Timestamp)result.get("created")).toLocalDateTime().truncatedTo(ChronoUnit.SECONDS));
 			list.add(inquiry);
 		}
 		

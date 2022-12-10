@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import java.sql.Timestamp;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class SurveyDaoImpl implements SurveyDao {
 			survey.setAge((int)result.get("age"));
 			survey.setSatisfaction((int)result.get("satisfaction"));
 			survey.setComment((String)result.get("comment"));
-			survey.setCreated(((Timestamp)result.get("created")).toLocalDateTime());
+			survey.setCreated(((Timestamp)result.get("created")).toLocalDateTime().truncatedTo(ChronoUnit.SECONDS));
 			list.add(survey);
 		}
 		

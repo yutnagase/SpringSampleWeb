@@ -34,7 +34,7 @@ public class SurveyController {
 		List<Survey> list = surveyService.getAll();
 		model.addAttribute("surveyList", list);
 		model.addAttribute("title", "Survey Index");
-		return "survey/index";
+		return "survey/index-boot";
 	}
 	
 	@GetMapping("/form")
@@ -42,13 +42,13 @@ public class SurveyController {
 			Model model,
 			@ModelAttribute("complete") String complete) {
 		model.addAttribute("title", "Survey Form");
-		return "survey/form";
+		return "survey/form-boot";
 	}
 	
 	@PostMapping("/form")
 	public String formGoBack(SurveyForm surveyForm, Model model) {
 		model.addAttribute("title", "Survey Form");
-		return "survey/form";
+		return "survey/form-boot";
 	}
 	
 	@PostMapping("/confirm")
@@ -58,10 +58,10 @@ public class SurveyController {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("title", "Survey Form");
-			return "survey/form";
+			return "survey/form-boot";
 		}
 		model.addAttribute("title", "Confirm Page");
-		return "survey/confirm";
+		return "survey/confirm-boot";
 	}
 	
 	@PostMapping("/complete")
@@ -72,7 +72,7 @@ public class SurveyController {
 		
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Survey Form");
-			return "survey/form";
+			return "survey/form-boot";
 		}
 		
 		Survey survey = new Survey();
@@ -83,6 +83,6 @@ public class SurveyController {
 		
 		surveyService.save(survey);
 		redirectAttributes.addFlashAttribute("complete", "Registered!");
-		return "redirect:/survey/form";
+		return "redirect:/survey";
 	}
 }

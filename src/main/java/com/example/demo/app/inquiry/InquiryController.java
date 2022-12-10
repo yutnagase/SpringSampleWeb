@@ -34,13 +34,13 @@ public class InquiryController {
 	public String index(Model model) {
 		List<Inquiry> list = inquiryService.getAll();
 		
-		Inquiry inquiry = new Inquiry();
-		inquiry.setName("taro");
-		inquiry.setEmail("taro@hoge.com");
-		inquiry.setContents("error deru hazu");
-		inquiry.setCreated(LocalDateTime.now());
-		
-		inquiryService.update(inquiry);
+//		Inquiry inquiry = new Inquiry();
+//		inquiry.setName("taro");
+//		inquiry.setEmail("taro@hoge.com");
+//		inquiry.setContents("error ");
+//		inquiry.setCreated(LocalDateTime.now());
+//		
+//		inquiryService.update(inquiry);
 		
 //		try {
 //			inquiryService.update(inquiry);
@@ -51,7 +51,7 @@ public class InquiryController {
 		
 		model.addAttribute("inquiryList", list);
 		model.addAttribute("title", "Inquiry Index");
-		return "inquiry/index";
+		return "inquiry/index-boot";
 	}	
 	
 	@GetMapping("/form")
@@ -59,13 +59,13 @@ public class InquiryController {
 			Model model,
 			@ModelAttribute("complete") String complete) {
 		model.addAttribute("title", "Inquiry Form");
-		return "inquiry/form";
+		return "inquiry/form-boot";
 	}
 	
 	@PostMapping("/form")
 	public String formGoBack(InquiryForm inquiryForm, Model model) {
 		model.addAttribute("title", "Inquiry Form");
-		return "inquiry/form";
+		return "inquiry/form-boot";
 	}
 	
 	@PostMapping("/confirm")
@@ -75,10 +75,10 @@ public class InquiryController {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("title", "Inquiry Form");
-			return "inquiry/form";
+			return "inquiry/form-boot";
 		}
 		model.addAttribute("title", "Confirm Page");
-		return "inquiry/confirm";
+		return "inquiry/confirm-boot";
 	}
 	
 	@PostMapping("/complete")
@@ -89,7 +89,7 @@ public class InquiryController {
 		
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Inquiry Form");
-			return "inquiry/form";
+			return "inquiry/form-boot";
 		}
 		
 		Inquiry inquiry = new Inquiry();
@@ -100,7 +100,7 @@ public class InquiryController {
 		
 		inquiryService.save(inquiry);		
 		redirectAttributes.addFlashAttribute("complete", "Registered!");
-		return "redirect:/inquiry/form";
+		return "redirect:/inquiry";
 	}
 	
 //	/*
