@@ -22,65 +22,59 @@ import com.example.demo.service.SurveyService;
 public class SurveyController {
 
 	private SurveyService surveyService;
-	
+
 	@Autowired
 	public SurveyController(SurveyService surveyService) {
 		this.surveyService = surveyService;
 	}
-	
+
 	@GetMapping
 	public String index(Model model) {
-		
+
 		List<Survey> list = surveyService.getAll();
 		model.addAttribute("surveyList", list);
 		model.addAttribute("title", "Survey Index");
 		return "survey/index-boot";
 	}
-	
+
 	@GetMapping("/form")
-	public String form(SurveyForm surveyForm, 
-			Model model,
-			@ModelAttribute("complete") String complete) {
+	public String form(SurveyForm surveyForm, Model model, @ModelAttribute("complete") String complete) {
 		model.addAttribute("title", "Survey Form");
 		return "survey/form-boot";
 	}
-	
+
 	@PostMapping("/form")
 	public String formGoBack(SurveyForm surveyForm, Model model) {
 		model.addAttribute("title", "Survey Form");
 		return "survey/form-boot";
 	}
-	
+
 	@PostMapping("/confirm")
-	public String confirm(@Validated SurveyForm surveyForm,
-			BindingResult result, 
-			Model model) {
-		
-		if(result.hasErrors()) {
+	public String confirm(@Validated SurveyForm surveyForm, BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
 			model.addAttribute("title", "Survey Form");
 			return "survey/form-boot";
 		}
 		model.addAttribute("title", "Confirm Page");
 		return "survey/confirm-boot";
 	}
-	
+
 	@PostMapping("/complete")
-	public String complete(@Validated SurveyForm surveyForm, 
-			BindingResult result,
-			Model model,
+	public String complete(@Validated SurveyForm surveyForm, BindingResult result, Model model,
 			RedirectAttributes redirectAttributes) {
-		
+
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Survey Form");
 			return "survey/form-boot";
 		}
-		
+
 		Survey survey = new Survey();
 		survey.setAge(surveyForm.getAge());
 		survey.setSatisfaction(surveyForm.getSatisfaction());
 		survey.setComment(surveyForm.getComment());
 		survey.setCreated(LocalDateTime.now());
-		
+
 		surveyService.save(survey);
 		redirectAttributes.addFlashAttribute("complete", "Registered!");
 		return "redirect:/survey";

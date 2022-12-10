@@ -2,42 +2,45 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title th:text="${title}">Insert title here</title>
+	<meta charset="UTF-8">
+	<title th:text="${title}">Insert title here</title>
 </head>
+
 <body>
-<h1 th:text="${title}">title</h1>
-<h2 th:text="${complete}"></h2>
+	<h1 th:text="${title}">title</h1>
+	<h2 th:text="${complete}"></h2>
 
-<form method="post" action="#" th:action="@{/survey/confirm}" th:object="${surveyForm}">
+	<form method="post" action="#" th:action="@{/survey/confirm}" th:object="${surveyForm}">
 
-	<label for="age">Age:</label>
-	<input id="age" name="age" type="number" th:value="*{age}" required><br>
-	<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>	
-	
-	<label for="satisfaction">Satisfaction:</label>
-	<input type="radio" id="satisfaction1" name="satisfaction"  th:value="1" th:field="*{satisfaction}" />
-	<label for="satisfaction1">1</label>
-	
-	<input type="radio" id="satisfaction2" name="satisfaction"  th:value="2" th:field="*{satisfaction}" />
-	<label for="satisfaction2">2</label>
-	
-	<input type="radio" id="satisfaction3" name="satisfaction"  th:value="3" th:field="*{satisfaction}" />
-	<label for="satisfaction3">3</label>
-	
-	<input type="radio" id="satisfaction4" name="satisfaction"  th:value="4" th:field="*{satisfaction}" />
-	<label for="satisfaction1">4</label>
-	
-	<input type="radio" id="satisfaction5" name="satisfaction"  th:value="5" th:field="*{satisfaction}" />
-	<label for="satisfaction5">5</label>
-	
-	<div th:if="${#fields.hasErrors('satisfaction')}" th:errors="*{satisfaction}"></div>
-	<br>
-	<label for="comment">Comment:</label>
-	<textarea name="comment" id="comment" rows="3" cols="40" th:field="*{comment}"></textarea><br>
-	<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
-	<input type="submit" value="Confirm">
-</form>
+		<label for="age">Age:</label>
+		<input id="age" name="age" type="number" th:value="*{age}" required><br>
+		<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+
+		<label for="satisfaction">Satisfaction:</label>
+		<input type="radio" id="satisfaction1" name="satisfaction" th:value="1" th:field="*{satisfaction}" />
+		<label for="satisfaction1">1</label>
+
+		<input type="radio" id="satisfaction2" name="satisfaction" th:value="2" th:field="*{satisfaction}" />
+		<label for="satisfaction2">2</label>
+
+		<input type="radio" id="satisfaction3" name="satisfaction" th:value="3" th:field="*{satisfaction}" />
+		<label for="satisfaction3">3</label>
+
+		<input type="radio" id="satisfaction4" name="satisfaction" th:value="4" th:field="*{satisfaction}" />
+		<label for="satisfaction1">4</label>
+
+		<input type="radio" id="satisfaction5" name="satisfaction" th:value="5" th:field="*{satisfaction}" />
+		<label for="satisfaction5">5</label>
+
+		<div th:if="${#fields.hasErrors('satisfaction')}" th:errors="*{satisfaction}"></div>
+		<br>
+		<label for="comment">Comment:</label>
+		<textarea name="comment" id="comment" rows="3" cols="40" th:field="*{comment}"></textarea><br>
+		<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+		<input type="submit" value="Confirm">
+	</form>
 </body>
+
 </html>

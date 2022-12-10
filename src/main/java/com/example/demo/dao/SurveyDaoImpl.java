@@ -16,12 +16,12 @@ import com.example.demo.entity.Survey;
 public class SurveyDaoImpl implements SurveyDao {
 
 	private final JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	public SurveyDaoImpl(JdbcTemplate jdbcTemplate) {
-			this.jdbcTemplate = jdbcTemplate;
+		this.jdbcTemplate = jdbcTemplate;
 	}
-	
+
 	@Override
 	public void insertSurvey(Survey survey) {
 		jdbcTemplate.update("INSERT INTO survey(age, satisfaction, comment, created) VALUES (?, ?, ?, ?)",
@@ -34,17 +34,17 @@ public class SurveyDaoImpl implements SurveyDao {
 		String sql = "SELECT id, age, satisfaction, comment, created FROM survey";
 		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 		List<Survey> list = new ArrayList<Survey>();
-		
-		for(Map<String, Object> result : resultList) {
+
+		for (Map<String, Object> result : resultList) {
 			Survey survey = new Survey();
-			survey.setId((int)result.get("id"));
-			survey.setAge((int)result.get("age"));
-			survey.setSatisfaction((int)result.get("satisfaction"));
-			survey.setComment((String)result.get("comment"));
-			survey.setCreated(((Timestamp)result.get("created")).toLocalDateTime().truncatedTo(ChronoUnit.SECONDS));
+			survey.setId((int) result.get("id"));
+			survey.setAge((int) result.get("age"));
+			survey.setSatisfaction((int) result.get("satisfaction"));
+			survey.setComment((String) result.get("comment"));
+			survey.setCreated(((Timestamp) result.get("created")).toLocalDateTime().truncatedTo(ChronoUnit.SECONDS));
 			list.add(survey);
 		}
-		
+
 		return list;
 	}
 

@@ -8,7 +8,7 @@ public class Inquiry {
 	private String email;
 	private String contents;
 	private LocalDateTime created;
-	
+
 	public Inquiry() {
 	}
 
@@ -51,6 +51,5 @@ public class Inquiry {
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
-	
 
 }

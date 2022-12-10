@@ -6,6 +6,6 @@ import com.example.demo.entity.Survey;
 
 public interface SurveyService {
 	void save(Survey survey);
-	
+
 	List<Survey> getAll();
 }

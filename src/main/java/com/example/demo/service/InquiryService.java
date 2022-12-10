@@ -6,9 +6,9 @@ import com.example.demo.entity.Inquiry;
 
 public interface InquiryService {
 	void save(Inquiry inquiry);
-	
+
 	void update(Inquiry inquiry);
-	
+
 	List<Inquiry> getAll();
 
 }

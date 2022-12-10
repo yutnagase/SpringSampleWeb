@@ -12,12 +12,12 @@ import com.example.demo.entity.Survey;
 public class SurveyServiceImpl implements SurveyService {
 
 	private final SurveyDao dao;
-	
+
 	@Autowired
 	public SurveyServiceImpl(SurveyDao dao) {
 		this.dao = dao;
 	}
-	
+
 	@Override
 	public void save(Survey survey) {
 		dao.insertSurvey(survey);
